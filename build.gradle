@@ -1,0 +1,35 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.9.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+group = 'io.pivotal.practice.springintegration.guides'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+    compile('org.projectlombok:lombok')
+	compile('org.springframework.boot:spring-boot-starter-integration')
+	compile("org.springframework.integration:spring-integration-feed")
+	compile("org.springframework.integration:spring-integration-file")
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+tasks.withType(JavaExec) {
+	standardInput = System.in
+}
